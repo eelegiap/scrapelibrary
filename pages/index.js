@@ -56,8 +56,10 @@ function LiteTikTokWrapper({ id }) {
 }
 
 export async function getStaticProps() {
-  const data = getAllData().filter(d => d.folder === 'by_user')
-  const sortedData = data.sort((a, b) => b.diggCount - a.diggCount);
+  const data = getAllData()
+  const filteredList = data.filter(obj => afdBundestagTikTokers.includes(obj.authorUniqueId));
+
+  const sortedData = filteredList.sort((a, b) => b.diggCount - a.diggCount);
   const allPostsData = sortedData.slice(0,1000)
   // console.log(allPostsData)
   return {
@@ -66,3 +68,63 @@ export async function getStaticProps() {
     },
   };
 }
+
+const afdBundestagTikTokers = ['albrecht_glaser_mdb',
+ 'alice_weidel_afd',
+ 'beatrixvonstorchneu',
+ 'bernd.schattner.mdb',
+ 'carolin_bachmann_mdb',
+ 'christian.wirth2',
+ 'christinabaumafd',
+ 'dietmar.friedhoff.mdb',
+ 'brandesdirk',
+ 'edgarnaujokmdb',
+ 'enricokomning',
+ 'eugen_schmidt.mdb',
+ 'frank.rinck',
+ 'gereonbollmann',
+ 'gerold_otten',
+ 'gerrithuy',
+ 'gottfriedcurio',
+ 'goetzfroemming',
+ 'hannesgnauck',
+ 'haraldweyel',
+ 'jan_nolte_bundestag',
+ 'janwenzelschmidt',
+ 'joachim.wundrak',
+ 'jochenhaug_mdb',
+ 'joernkoenig_mdb',
+ 'juergenbraunmdb',
+ 'juergenpohlafd',
+ 'karstenhilseafd',
+ 'kaygottschalk',
+ 'kayuweziegler71',
+ 'leiferikholm',
+ 'malte.kaufmann',
+ 'manfred.schiller.afd',
+ 'marcbernhard',
+ 'marcus_buehl',
+ 'markusfrohnmaier',
+ 'martin_hess_klartext',
+ 'mr_afd',
+ 'sichertdeutschland',
+ 'dr_espendiller',
+ 'kaufmannm',
+ 'mikemoncsek.de',
+ 'kleinwaechterafd',
+ 'peterboehringerafd',
+ 'peterfelser_mdb',
+ 'dr.rainer.rothfuss',
+ 'renebochmann',
+ 'rene_springer',
+ 'roger_beckamp',
+ 'muenzenmaier',
+ 'stefan_keuter',
+ 'steffenkotre',
+ 'brandner_afd',
+ 'protschkasposition',
+ 'thomas.ehrhorn',
+ 'tino.chrupalla.afd',
+ 'tmpeterka_mdb',
+ 'ulschzi2',
+ 'volkermuenz_mdb']
